@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Snippet-API-Nodejs-Express-CrossSite</title>
+    <meta name="description" content="Snippet to test a Node.js API using Express being called from another site.">
+    <meta name="author" content="Pete Cleary">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+     <script type="text/javascript">
+         $(function () {
+             function log(msg) {
+                document.getElementById("results").innerHTML += "<p>" + msg + "</p>";
+             }
+
+             $('#testlink').click(function (e) {
+                 e.preventDefault();
+                 
+                 document.getElementById("results").innerHTML = "";
+                 log("Results");
+
+                 var url = 'http://localhost:3000/?cb=?';
+
+                 $.getJSON(url, null, function (data) {
+                     $('#results').innerHTML += log(JSON.stringify(data));
+                 })
+                 .success(function () { log("second success"); })
+                 .error(function (event, request, settings) { console.log(event); console.log(request); console.log(settings); log("error - check console for more details"); })
+                 .complete(function () { log("complete"); });
+             });
+         });
+        </script>
+</head>
+<body>
+    <p><a href="#" id="testlink">test jsonp</a></p>    
+    <div id="results"></div>
+</body>
+</html>

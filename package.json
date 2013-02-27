@@ -1,0 +1,10 @@
+{
+	"name": "Snippet-API-Nodejs-Express-CrossSite"
+    ,"description": "Snippet to test a Node.js API using Express being called from another site."
+	, "author": "Pete Cleary"
+    , "private": true
+    , "version": "0.1.0"
+    , "dependencies": {
+        "express": "latest"
+    }
+}
